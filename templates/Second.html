@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analysis Results</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+        .table-container {
+            max-height: 600px; /* Adjust max height as needed */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Data Analysis Results</h1>
+
+        
+
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                Summary Statistics
+            </div>
+            <div class="card-body">
+                <div class="table-container">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Column Name</th>
+                                <th>Count</th>
+                                <th>Mean</th>
+                                <th>Standard Deviation</th>
+                                <th>Min</th>
+                                <th>25%</th>
+                                <th>50%</th>
+                                <th>75%</th>
+                                <th>Max</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for column, stats in summary_statistics.items %}
+                            <tr>
+                                <td>{{ column }}</td>
+                                <td>{{ stats.count }}</td>
+                                <td>{{ stats.mean }}</td>
+                                <td>{{ stats.std }}</td>
+                                <td>{{ stats.min }}</td>
+                                <td>{{ stats.percentile_25 }}</td>  
+                                <td>{{ stats.percentile_50 }}</td>  
+                                <td>{{ stats.percentile_75 }}</td>  
+                                <td>{{ stats.max }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                Missing Values
+            </div>
+            <div class="card-body">
+                <div class="table-container">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Column</th>
+                                <th>Missing Values</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for column, missing in null_values.items %}
+                            <tr>
+                                <td>{{ column }}</td>
+                                <td>{{ missing }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
